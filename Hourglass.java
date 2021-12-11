@@ -19,15 +19,24 @@ final class Hourglass {
     throw new IllegalStateException("Cannot be initated.");
   }
 
+  /**
+  * Function creates the top half of the hourglass.
+  *
+  * @param max the total number of rows being made.
+  * @param current the current row being made.
+  *
+  * @return top half of the hourglass.
+  */
   public static String topHalf(final int max, final int current) {
     String result = "";
-    result += "\n";
+    if (current != 0) {
+      result += "\n";
+    }
     if ((current + 1) == max) {
       for (int times = 0; times < current; times++) {
         result += space;
       }
       result += star;
-      result += bottomHalf(0, current, max);
     } else {
       final int row = max - current;
       for (int times = 0; times < current; times++) {
@@ -42,21 +51,32 @@ final class Hourglass {
     return result;
   }
 
+  /**
+  * Function creates the bottom half of the hourglass.
+  *
+  * @param min the total number of rows being made.
+  * @param current the current row being made.
+  * @param value value used to check what row function is on.
+  *
+  * @return top half of the hourglass.
+  */
   public static String bottomHalf(final int min, final int current,
                                   final int value) {
     String result = "";
-    result += "\n";
-    if ((current - 1) == min) {
-      for (int times = 0; times < current; times++) {
-        result += space;
+    if (current != value) {
+      result += "\n";
+    }
+    if (current == min) {
+      for (int times = value; times > current; times--) {
         result += star;
+        result += space;
       }
     } else {
       final int row = value - current;
-      for (int times = 0; times < current; times++) {
+      for (int times = value; times > row; times--) {
         result += space;
       }
-      for (int layer = 0; layer < row; layer++) {
+      for (int layer = value; layer > current; layer--) {
         result += star;
         result += space;
       }
@@ -69,6 +89,7 @@ final class Hourglass {
   * The starting main() function.
   *
   * @param args Name of file containing a string of numbers
+  * @throws NumberFormatException if error occurs.
   */
   public static void main(final String[] args) {
     final Scanner userInput = new Scanner(System.in);
@@ -79,6 +100,7 @@ final class Hourglass {
       System.out.println();
       if (glassSize > 0) {
         String hourglass = topHalf(glassSize, 0);
+        hourglass += bottomHalf(0, glassSize, glassSize);
         System.out.print(hourglass);
       } else {
         System.out.println("\nPlease enter a positive integer.");
