@@ -21,8 +21,7 @@ final class Hourglass {
   * @throws NumberFormatException if error occurs.
   */
   public static void main(final String[] args) {
-    glassTop topGlass = new glassTop();
-    glassBottom bottomGlass = new glassBottom();
+    GlassHalves hourGlass = new GlassHalves();
     final Scanner userInput = new Scanner(System.in);
     System.out.print("\nInput size of hourglass: ");
     final String usrInput = userInput.nextLine();
@@ -30,8 +29,8 @@ final class Hourglass {
       final int glassSize = Integer.valueOf(usrInput);
       System.out.println();
       if (glassSize > 0) {
-        String hourglassTop = topGlass.topHalf(glassSize, 0);
-        String hourglassBottom = bottomGlass.bottomHalf(0, glassSize,
+        String hourglassTop = hourGlass.topHalf(glassSize, 0);
+        String hourglassBottom = hourGlass.bottomHalf(0, glassSize,
         glassSize);
         System.out.print(hourglassTop);
         System.out.print(hourglassBottom);

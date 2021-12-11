@@ -1,11 +1,46 @@
-public class GlassBottom {
+public class GlassHalves {
 
   /**
   * The star string used for the hourglass visual.
   */
   private static final String STAR = "*";
 
+  /**
+  * The space string used for the gaps in between the stars.
+  */
   private static final String SPACE = " ";
+
+  /**
+  * Function creates the top half of the hourglass.
+  *
+  * @param max the total number of rows being made.
+  * @param current the current row being made.
+  *
+  * @return top half of the hourglass.
+  */
+  public String topHalf(final int max, final int current) {
+    String result = "";
+    if (current != 0) {
+      result += "\n";
+    }
+    if ((current + 1) == max) {
+      for (int times = 0; times < current; times++) {
+        result += SPACE;
+      }
+      result += STAR;
+    } else {
+      final int row = max - current;
+      for (int times = 0; times < current; times++) {
+        result += SPACE;
+      }
+      for (int layer = 0; layer < row; layer++) {
+        result += STAR;
+        result += SPACE;
+      }
+      result += topHalf(max, current + 1);
+    }
+    return result;
+  }
 
   /**
   * Function creates the bottom half of the hourglass.
