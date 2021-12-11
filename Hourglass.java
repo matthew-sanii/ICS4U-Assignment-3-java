@@ -27,7 +27,6 @@ final class Hourglass {
     final String usrInput = userInput.nextLine();
     try {
       final int glassSize = Integer.valueOf(usrInput);
-      System.out.println();
       if (glassSize > 0) {
         String hourglassTop = hourGlass.topHalf(glassSize, 0);
         String hourglassBottom = hourGlass.bottomHalf(0, glassSize,
@@ -40,7 +39,6 @@ final class Hourglass {
     } catch (NumberFormatException errorCode) {
       System.err.print("\nThis is not an integer.");
     }
-    System.out.println("");
     System.out.println("\nDone.");
   }
 }
