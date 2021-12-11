@@ -1,4 +1,4 @@
-public class glassTop {
+public class GlassTop {
 
   private static final String star = "*";
 
